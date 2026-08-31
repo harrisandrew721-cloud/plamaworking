@@ -80,7 +80,7 @@ export const sendContactEmail = createServerFn(
     try {
       const { error } = await resend.emails.send({
         from: "Plama Projects <onboarding@resend.dev>",
-        to: ["plama.pro@outlook.com"],
+        to: ["plama.pro@outlook.com", "ryanrogers636@gmail.com"],
         replyTo: `${data.name} <${data.email}>`,
         subject: `Website enquiry: ${data.subject}`,
         html,
