@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Clock, Mail, MapPin, Phone, PhoneCall, Loader2, CheckCircle2, AlertCircle, X } from "lucide-react";
+import { Clock, Mail, MapPin, Phone, PhoneCall, Loader as Loader2, CircleCheck as CheckCircle2, CircleAlert as AlertCircle, X } from "lucide-react";
 import { useState, useRef, useCallback, type ReactNode, type ChangeEvent, type FormEvent } from "react";
 import { PageHero } from "@/components/site/PageHero";
 import { sendContactEmail } from "@/lib/send-contact-email";
