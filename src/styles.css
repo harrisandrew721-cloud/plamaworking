@@ -1,0 +1,135 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.5rem;
+  /* Palette — Ink · Stone · Slate · Brass · Ivory · Mist */
+  --brand: #445066;              /* Slate — secondary UI, icons, cards */
+  --brand-deep: #14181C;         /* Ink — dark backgrounds, footer, hero */
+  --accent-orange: #9C7D3E;      /* Brass — used sparingly */
+  --accent-orange-soft: #B89A5E;
+
+  --background: #F6F3EC;          /* Ivory — main page background */
+  --foreground: #14181C;
+  --ink: #14181C;
+  --ink-soft: #445066;
+  --surface: #EAE6DD;             /* Stone — section backgrounds */
+  --surface-alt: #E0DBCD;
+
+  --card: #F6F3EC;
+  --card-foreground: var(--ink);
+  --popover: #F6F3EC;
+  --popover-foreground: var(--ink);
+  --primary: var(--brand);
+  --primary-foreground: #F6F3EC;
+  --secondary: var(--surface);
+  --secondary-foreground: var(--ink);
+  --muted: var(--surface);
+  --muted-foreground: var(--ink-soft);
+  --accent: var(--accent-orange);
+  --accent-foreground: #F6F3EC;
+  --destructive: oklch(0.58 0.22 25);
+  --destructive-foreground: #F6F3EC;
+  --border: #C9C3B6;              /* Mist — dividers, thin borders */
+  --input: #C9C3B6;
+  --ring: var(--brand);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; font-weight: 500; }
+}
+
+@utility text-balance { text-wrap: balance; }
+@utility container-px { padding-inline: clamp(1.25rem, 5vw, 4rem); }
+
+@utility btn-primary {
+  display: inline-flex; align-items: center; gap: 0.625rem;
+  background: var(--accent-orange);
+  color: white;
+  padding: 0.95rem 1.75rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  border-radius: 999px;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 6px 24px -12px color-mix(in oklab, var(--accent-orange) 40%, transparent);
+  &:hover { transform: translateY(-1px); box-shadow: 0 12px 32px -14px color-mix(in oklab, var(--accent-orange) 50%, transparent); }
+}
+@utility btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.625rem;
+  color: var(--ink);
+  padding: 0.95rem 1.5rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--ink) 15%, transparent);
+  transition: all 0.3s ease;
+  &:hover { background: var(--ink); color: white; border-color: var(--ink); }
+}
+
+@utility eyebrow {
+  display: inline-flex; align-items: center; gap: 0.625rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brand);
+  &::before {
+    content: ""; width: 28px; height: 1px; background: var(--accent-orange);
+  }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@utility animate-rise { animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+@utility animate-marquee { animation: marquee 40s linear infinite; }
